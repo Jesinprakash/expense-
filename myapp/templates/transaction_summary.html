@@ -1,0 +1,60 @@
+{%extends 'base.html'%}
+
+{%block main_block%}
+
+<div class="container">
+
+    <div class="row">
+        <h4>Total Expense:{{total_expense}}</h4>
+
+        <div class="col-2"></div>
+        <div class="col-8">
+            <form action="">
+                <div class="row my-3">
+                    <div class="col-5">
+                        <label for="">StartDate</label>
+                        {{form.start_date}}
+                    </div>
+                    <div class="col-5">
+                        <label for="">EndDate</label>
+                        {{form.end_date}}
+                    </div>
+                    <div class="col-2">  <button type="submit" class="mt-4">Fetch</button></div>
+                </div>
+              
+              
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <table class="table border mt-3 border-2 p-4 shadow">
+                <tr>
+                    <th>title</th>
+                    <th>amount</th>
+                    <th>payment methode</th>
+                    <th>action</th>
+                </tr>
+                {%for t in transaction%}
+                <tr>
+                    <td>{{t.title}}</td>
+                    <td>{{t.amount}}</td>
+                    <td>{{t.payment_method}}</td>
+                    <td>
+                        <a href="{%url 'transaction-edit' t.id%}" class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="{%url 'transaction-delete' t.id%}" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+
+                {%endfor%}
+            </table>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+</div>
+
+{%endblock%}
